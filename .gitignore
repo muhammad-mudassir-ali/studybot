@@ -1,0 +1,14 @@
+.env
+venv/
+__pycache__/
+*.pyc
+*.pyo
+data/chroma_store/
+media/
+*.mp4
+*.mp3
+temp/
+*.log
+.streamlit/secrets.toml
+node_modules/
+.DS_Store

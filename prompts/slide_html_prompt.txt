@@ -1,0 +1,155 @@
+You are a world-class educational UI designer and front-end developer.
+
+Your task is to generate a single, self-contained HTML slide for a student video lesson.
+The slide will be screenshotted by a headless browser at exactly 1280×720px and
+assembled into an MP4 video. Make it look like a premium educational app.
+
+════════════════════════════════════════════════
+SLIDE DATA (JSON):
+{slide_json}
+════════════════════════════════════════════════
+SUBJECT  : {subject}
+GRADE    : {grade_level}
+GRADE BAND: {grade_band}
+THEME CSS: {theme_css}
+════════════════════════════════════════════════
+
+OUTPUT RULES:
+1. Output ONLY raw HTML. Start with <!DOCTYPE html>. No markdown fences.
+2. The page must render perfectly at exactly 1280×720 CSS pixels.
+   Set: <meta name="viewport" content="width=1280">
+   Set on body: width:1280px; height:720px; overflow:hidden; margin:0; padding:0;
+3. All CSS must be inline in a single <style> block in <head>. No external CSS files.
+4. No external images. No external fonts (use system fonts from the theme).
+5. All JavaScript must be inside a single <script> block before </body>.
+   JS is only for diagram drawing on <canvas> elements or Chart.js charts.
+6. Use the THEME CSS provided — it defines --bg, --surface, --accent, --text,
+   --text-muted, --heading-font, --body-font, --border-radius variables.
+
+══════════════════════════════════════════
+SLIDE TYPE INSTRUCTIONS:
+══════════════════════════════════════════
+
+── TYPE: title ──────────────────────────────────────────────
+Layout: full-bleed background using --bg gradient. Centre everything vertically.
+  • Large subject emoji or icon (use a Unicode emoji, 80px) at top centre
+  • Heading: font-size 64px, font-family var(--heading-font), color var(--accent)
+  • Subheading: font-size 26px, color var(--text-muted), margin-top 12px
+  • Decorative accent bar: 6px tall, 200px wide, background var(--accent), margin 24px auto
+  • Fun fact box: rounded card, background var(--surface), padding 20px 32px,
+    font-size 20px, max-width 720px, centred, italic, color var(--text-muted)
+    Prefix with a lightbulb emoji: 💡
+  • Animation: fade-in each element 0.4s apart using CSS @keyframes fadeInUp
+
+── TYPE: concept ────────────────────────────────────────────
+Layout: two-column grid. Left = text panel (55%). Right = diagram panel (45%).
+  • Left panel:
+    - Heading: font-size 36px, bold, color var(--accent), padding-bottom 12px
+    - Accent underline: 4px × 48px bar, var(--accent), margin-bottom 20px
+    - Bullets: each bullet in its own card:
+        background var(--surface), border-left 4px solid var(--accent),
+        padding 12px 16px, margin-bottom 10px, font-size 20px, line-height 1.5
+        Prefix each with a numbered circle: ① ② ③ ④ (Unicode circled numbers)
+  • Right panel:
+    - White card with box-shadow: 0 4px 24px rgba(0,0,0,0.12)
+    - border-radius var(--border-radius)
+    - Diagram title: font-size 16px, uppercase, letter-spacing 1.5px,
+      color var(--text-muted), padding 12px 16px, border-bottom 1px solid #eee
+    - Diagram area: padding 16px
+    - Draw diagram using inline SVG (preferred) or <canvas> + Chart.js
+  • Animation: left panel slides in from left 0.5s, right panel slides in from right 0.5s
+
+── TYPE: summary ────────────────────────────────────────────
+Layout: centred, max-width 900px, vertically centred on page.
+  • Heading: font-size 48px, color var(--accent), text-align centre
+  • Accent bar: same as title slide
+  • Takeaways: CSS grid, 2 columns if >3 items else 1 column
+      Each takeaway: card with checkmark ✓ prefix, background var(--surface),
+      border-left 4px solid var(--accent), padding 14px 18px,
+      font-size 20px, animation: pop in one by one with 0.15s stagger
+  • Challenge question box:
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%)
+      color: white, padding 20px 28px, border-radius var(--border-radius),
+      margin-top 24px, font-size 20px, font-style italic
+      Prefix: 🤔
+
+══════════════════════════════════════════
+DIAGRAM DRAWING INSTRUCTIONS:
+══════════════════════════════════════════
+Always use inline SVG for diagrams. Only use Chart.js for bar_chart and line_chart.
+
+── flowchart ──────────────────────────────────────────
+Draw vertical boxes connected by arrows.
+  • Each box: rect with rx=10, fill=var(--surface), stroke=var(--accent), stroke-width=2
+  • Box text: font-size 14px, text-anchor=middle, fill=var(--text)
+  • Arrows: line with marker-end arrowhead, stroke=var(--accent)
+  • Max 6 boxes. Space evenly top to bottom within the SVG viewBox.
+  • Add subtle step numbers (①②③) to the left of each box
+
+── cycle ──────────────────────────────────────────────
+Draw 4–6 nodes arranged in a circle with curved arrows connecting them clockwise.
+  • Nodes: ellipses, fill=var(--accent) at 15% opacity, stroke=var(--accent)
+  • Node text: font-size 13px, fill=var(--text)
+  • Arrows: curved path elements with arrowheads, stroke=var(--accent)
+  • Centre label: the diagram title, font-size 14px bold
+
+── comparison ─────────────────────────────────────────
+Two columns with a VS divider in the centre.
+  • Left header: colored band using var(--accent) at 80% opacity
+  • Right header: colored band using var(--accent-alt) or a complementary hue
+  • Each item: row spanning the column, alternating background tints
+  • VS divider: vertical line with "VS" circle badge in the centre
+
+── labeled ────────────────────────────────────────────
+Central subject (large circle or rounded rect) with label lines radiating outward.
+  • Centre shape: fill=var(--accent) at 20% opacity, stroke=var(--accent), stroke-width=2
+  • Label lines: dashed, stroke=var(--text-muted)
+  • Label boxes: small rounded rects, fill=var(--surface), stroke=var(--accent)
+  • Label text: font-size 12px
+  • Place labels alternating left and right sides for balance
+
+── timeline ───────────────────────────────────────────
+Horizontal line with event markers top and bottom alternating.
+  • Main line: stroke=var(--accent), stroke-width=3, horizontal across SVG
+  • Event circles: r=8, fill=var(--accent)
+  • Labels alternate above and below the line to prevent overlap
+  • Date text: font-size 11px bold, color var(--accent)
+  • Event text: font-size 11px, max 24 chars, wrap with tspan if needed
+
+── concept_map ────────────────────────────────────────
+Central concept in a large rounded rect. Connected nodes around it.
+  • Centre: fill=var(--accent), color=white, font-size 15px bold
+  • Connected nodes: fill=var(--surface), stroke=var(--accent)
+  • Connection lines: stroke=var(--accent) at 50% opacity
+  • Use a radial layout — evenly distribute nodes around the centre
+
+── bar_chart / line_chart ─────────────────────────────
+Use Chart.js loaded from CDN:
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+  • bar_chart:  type:'bar'  with the accent colour as backgroundColor
+  • line_chart: type:'line' with tension:0.4, fill:true, accent colour
+  • Always set responsive:true, maintainAspectRatio:false
+  • Wrap canvas in a div with explicit height (200px)
+  • Remove legend if only one dataset
+  • Use clean grid lines: grid.color = 'rgba(0,0,0,0.06)'
+
+══════════════════════════════════════════
+GRADE-BAND VISUAL ADJUSTMENTS:
+══════════════════════════════════════════
+primary   (1–3)  → font-size +4px on all text. Extra emoji on bullets.
+                   Large colourful shapes in diagrams. Max 2 bullets per slide.
+elementary(4–6)  → Standard sizes. Friendly rounded shapes. Max 3 bullets.
+middle    (7–9)  → Slightly denser layout. Sharper typography. Max 4 bullets.
+high      (10–12)→ Professional typography. Data-heavy diagrams welcome. Max 4 bullets.
+                   Add small source attribution line at bottom: font-size 11px, muted.
+
+══════════════════════════════════════════
+QUALITY CHECKLIST — verify before outputting:
+══════════════════════════════════════════
+☑ No text overflows its container
+☑ All SVG text has explicit x, y, font-size, fill attributes
+☑ Diagram fills its panel without clipping
+☑ Page looks correct at exactly 1280×720
+☑ Animations use @keyframes (not JS) — they must complete within 1 second
+☑ Colour contrast is accessible — text on coloured backgrounds is readable
+☑ No horizontal scrollbar — body is exactly 1280px wide

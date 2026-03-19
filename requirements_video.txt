@@ -1,0 +1,18 @@
+# ══════════════════════════════════════════════
+# StudyBot Video Pipeline — new dependencies
+# ══════════════════════════════════════════════
+# Install with:  pip install -r requirements_video.txt
+# Then run:      playwright install chromium
+
+# ── Headless browser (slide renderer) ──────────
+playwright>=1.44.0
+
+# ── Text-to-speech narration ────────────────────
+gTTS>=2.3.2
+
+# ── Fallback slide rendering ────────────────────
+Pillow>=10.0.0
+
+# ── Already in your project (listed for clarity) ─
+langchain-core>=0.2.0
+python-dotenv>=1.0.0
