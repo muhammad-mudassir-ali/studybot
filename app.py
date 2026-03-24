@@ -366,8 +366,10 @@ header, .stAppHeader {
 }
 
 [data-testid="stChatMessageContent"] {
-    background: var(--bg-secondary) !important;
-    border: 1px solid var(--border) !important;
+    background: rgba(30, 41, 59, 0.4) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
     border-radius: var(--radius-lg) !important;
     padding: 1rem 1.25rem !important;
     box-shadow: var(--shadow-sm);
@@ -376,15 +378,19 @@ header, .stAppHeader {
 }
 
 [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) [data-testid="stChatMessageContent"] {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%) !important;
-    border-color: var(--primary) !important;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.3) 0%, rgba(79, 70, 229, 0.3) 100%) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(99, 102, 241, 0.3) !important;
     color: white !important;
 }
 
 [data-testid="stChatMessage"] [data-testid="chatAvatarIcon-user"], 
 [data-testid="stChatMessage"] [data-testid="chatAvatarIcon-assistant"] {
-    background: transparent !important; /* Use base theme background */
-    border: 1px solid var(--border);
+    background: rgba(30, 41, 59, 0.5) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
     font-size: 18px;
     color: var(--text-primary) !important;
 }
@@ -395,8 +401,10 @@ header, .stAppHeader {
 }
 
 .stChatInputContainer textarea {
-    background: var(--bg-secondary) !important;
-    border: 1px solid var(--border) !important;
+    background: rgba(30, 41, 59, 0.4) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
     color: var(--text-primary) !important;
     border-radius: var(--radius-lg) !important;
     padding: 0.875rem 1rem !important;
@@ -409,8 +417,9 @@ header, .stAppHeader {
 }
 
 .stChatInputContainer textarea:focus {
-    border-color: var(--primary) !important;
-    box-shadow: 0 0 0 3px var(--primary-light) !important;
+    border-color: rgba(99, 102, 241, 0.5) !important;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2) !important;
+    background: rgba(30, 41, 59, 0.5) !important;
 }
 
 /* ── SPINNER ── */
@@ -458,10 +467,10 @@ hr {
 }
 /* ── MORPHIC BOTTOM AREA ── */
 [data-testid="stBottomBlockContainer"] {
-    background: rgba(15, 23, 42, 0.7) !important;
+    background: #0f172a;
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
-    border-top: 1px solid var(--border) !important;
+    border-top: 1px solid #293d59 !important;
 }
 
 /* Ensure the chat input container itself is transparent to show the background blur */
@@ -477,9 +486,13 @@ hr {
 
 /* Chat input text area styling */
 [data-testid="stChatInputTextArea"] {
-    background-color: rgba(30, 41, 59, 1) !important;
-    border: 1px solid var(--border) !important;
+    background: #0f172a;
+    border: 1px solid #2b3f5b !important;
     color: white !important;
+}
+
+.st-ch {
+    -webkit-text-fill-color: rgb(251 251 251 / 40%);
 }
 
 /* Remove any white spacing at the very bottom */
